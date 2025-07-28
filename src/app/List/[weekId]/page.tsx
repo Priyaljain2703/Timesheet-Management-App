@@ -3,13 +3,8 @@ import Layout from '@/components/Layout';
 import TimesheetEditor from '@/components/TimesheetEditor';
 
 export const dynamic = 'force-dynamic';
-type PageProps = {
-  params: {
-    weekId: string;
-  };
-};
 
-export default function TimesheetPage({ params }: PageProps) {
+export default function TimesheetPage() {
 
   return (
     <Layout>
