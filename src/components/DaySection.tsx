@@ -6,19 +6,20 @@ import AddTaskModal from './AddTaskModel';
 interface DaySectionProps {
   day: string;
   tasks: { task: string; hours: number; project: string }[];
+  onAddTask: (task: { task: string; hours: number; project: string }) => void;
 }
 
-const DaySection: React.FC<DaySectionProps> = ({ day, tasks }) => {
+const DaySection: React.FC<DaySectionProps> = ({ day, tasks, onAddTask }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="mb-6 flex items-start space-x-4">
-      
+
       <div className="w-20 pt-2">
         <h4 className="font-semibold text-sm text-gray-800">{day}</h4>
       </div>
 
-      
+
       <div className="flex-1">
         {tasks.map((t, i) => (
           <TaskRow key={i} task={t.task} hours={t.hours} project={t.project} />
@@ -32,7 +33,17 @@ const DaySection: React.FC<DaySectionProps> = ({ day, tasks }) => {
         </button>
       </div>
 
-      <AddTaskModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+     <AddTaskModal
+  isOpen={modalOpen}
+  onClose={() => setModalOpen(false)}
+  onSubmit={(task) => {
+    onAddTask(task); // ✅ This triggers the state update
+    setModalOpen(false);
+  }}
+/>
+
+
+
     </div>
   );
 };

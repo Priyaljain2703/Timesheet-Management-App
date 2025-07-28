@@ -1,8 +1,8 @@
+'use client';
 
-'use client'; 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; 
-
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -19,8 +19,18 @@ const LoginForm: React.FC = () => {
       return;
     }
 
-   
-    router.push('/dashboard');
+    const res = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+        remember: rememberMe,
+    });
+
+    if (res?.ok) {
+      router.push('/dashboard');
+    } else {
+      setError('Invalid email or password.');
+    }
   };
 
   return (

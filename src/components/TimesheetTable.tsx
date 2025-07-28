@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import StatusBadge from './StatusBadge';
 import Link from 'next/link';
 
@@ -10,17 +11,33 @@ type Timesheet = {
   action: 'View' | 'Update' | 'Create';
 };
 
-const timesheets: Timesheet[] = [
-  { week: 1, date: '1 - 5 January, 2024', status: 'COMPLETED', action: 'View' },
-  { week: 2, date: '8 - 12 January, 2024', status: 'COMPLETED', action: 'View' },
-  { week: 3, date: '15 - 19 January, 2024', status: 'INCOMPLETE', action: 'Update' },
-  { week: 4, date: '22 - 26 January, 2024', status: 'COMPLETED', action: 'View' },
-  { week: 5, date: '28 January - 1 February, 2024', status: 'MISSING', action: 'Create' },
-];
-
 export default function TimesheetTable() {
+  const [timesheets, setTimesheets] = useState<Timesheet[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTimesheets = async () => {
+      try {
+        const res = await fetch('/api/timesheets');
+        const data = await res.json();
+        setTimesheets(data);
+      } catch (error) {
+        console.error('Error fetching timesheets:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTimesheets();
+  }, []);
+
+  if (loading) {
+    return <div className="p-4 text-gray-600 text-center">Loading timesheets...</div>;
+  }
+
   return (
-    <div className="overflow-x-auto bg-white rounded-md shadow-md overflow-y-auto">
+   <div className="overflow-x-auto bg-white rounded-md shadow-md">
+
       <table className="w-full min-w-[640px] text-left text-sm">
         <thead className="bg-gray-100">
           <tr className="bg-[#ededed]">
@@ -29,7 +46,7 @@ export default function TimesheetTable() {
             <th className="px-4 py-3 font-medium text-gray-500 whitespace-nowrap">STATUS</th>
             <th className="px-4 py-3 font-medium text-gray-500 whitespace-nowrap">ACTIONS</th>
           </tr>
-        </thead>
+        </thead> 
         <tbody>
           {timesheets.map((item) => (
             <tr key={item.week} className="border-t border-[#d1d1d1]">

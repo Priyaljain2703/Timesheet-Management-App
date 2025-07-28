@@ -2,9 +2,15 @@
 
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid'; 
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+   const { data: session } = useSession(); 
+    const userName = session?.user?.name || session?.user?.email || 'Guest';
+
+     const router = useRouter();
 
   return (
     <nav className="bg-white border-b border-gray-200 shadow-sm">
@@ -24,7 +30,7 @@ export default function Navbar() {
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="flex items-center space-x-2 text-md  text-gray-600 hover:text-black focus:outline-none"
             >
-              <span>John Doe</span>
+              <span>{userName}</span>
               <ChevronDownIcon className="h-4 w-4" />
             </button>
 
@@ -37,12 +43,12 @@ export default function Navbar() {
                 >
                   Profile
                 </a>
-                <a
-                  href="#"
+                <button
+                 onClick={() => router.push('/')}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   Logout
-                </a>
+                </button>
               </div>
             )}
           </div>
