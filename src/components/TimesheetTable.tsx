@@ -36,7 +36,7 @@ export default function TimesheetTable() {
   }
 
   return (
-   <div className="overflow-x-auto bg-white rounded-md shadow-md">
+    <div className="overflow-x-auto bg-white rounded-md shadow-md">
 
       <table className="w-full min-w-[640px] text-left text-sm">
         <thead className="bg-gray-100">
@@ -46,7 +46,7 @@ export default function TimesheetTable() {
             <th className="px-4 py-3 font-medium text-gray-500 whitespace-nowrap">STATUS</th>
             <th className="px-4 py-3 font-medium text-gray-500 whitespace-nowrap">ACTIONS</th>
           </tr>
-        </thead> 
+        </thead>
         <tbody>
           {timesheets.map((item) => (
             <tr key={item.week} className="border-t border-[#d1d1d1]">

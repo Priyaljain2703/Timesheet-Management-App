@@ -36,7 +36,7 @@ const TimesheetEditor = () => {
       const updatedTasks = [...(prev[day] || []), newTask];
       const updatedData = { ...prev, [day]: updatedTasks };
 
-      // Calculate updated total hours
+      
       const newTotalHours = Object.values(updatedData).reduce((sum, tasks) =>
         sum + tasks.reduce((daySum, task) => daySum + task.hours, 0)
       , 0);
