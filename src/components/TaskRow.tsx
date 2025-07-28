@@ -25,22 +25,22 @@ const TaskRow: React.FC<TaskRowProps> = ({ task, hours, project, showActions = t
 
   return (
     <div className="flex flex-wrap sm:flex-nowrap justify-between items-center border rounded-lg border-gray-300 px-4 py-3 mb-2 bg-white shadow-sm gap-2">
-      {/* Task Name */}
+     
       <div className="flex-1 text-sm sm:text-base text-gray-800 min-w-[150px]">
         {task}
       </div>
 
-      {/* Hours */}
+     
       <div className="text-sm text-gray-500 w-20 text-right sm:text-center">
         {hours} hrs
       </div>
 
-      {/* Project */}
+     
       <div className="bg-blue-100 text-blue-500 rounded-md px-3 py-1 text-xs sm:text-sm font-semibold whitespace-nowrap">
         {project}
       </div>
 
-      {/* Actions */}
+     
       {showActions && (
         <div className="ml-auto sm:ml-4 relative" ref={menuRef}>
           <button

@@ -37,7 +37,7 @@ const DaySection: React.FC<DaySectionProps> = ({ day, tasks, onAddTask }) => {
   isOpen={modalOpen}
   onClose={() => setModalOpen(false)}
   onSubmit={(task) => {
-    onAddTask(task); // ✅ This triggers the state update
+    onAddTask(task); 
     setModalOpen(false);
   }}
 />

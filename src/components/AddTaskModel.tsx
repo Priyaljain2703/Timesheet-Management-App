@@ -28,7 +28,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onSubmit }
     <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] flex items-center justify-center z-50 px-2">
       <div className="bg-white w-full max-w-2xl rounded-lg p-4 md:p-6 shadow-lg relative max-h-[90vh] overflow-y-auto">
         
-        {/* Close Button */}
+      
         <button
           className="absolute top-4 right-4 text-gray-500 text-xl hover:text-gray-700"
           onClick={onClose}
@@ -39,7 +39,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onSubmit }
         <h2 className="text-lg font-semibold mb-4">Add New Task</h2>
         <hr className="border-t border-gray-300 mb-4" />
 
-        {/* Project Field */}
+       
         <div className="mb-4">
           <label className="block text-gray-800 text-sm font-medium mb-1">Select Project *</label>
           <select
@@ -56,7 +56,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onSubmit }
           </select>
         </div>
 
-        {/* Task Field */}
+        
         <div className="mb-4">
           <label className="block text-gray-800 text-sm font-medium mb-1">Task Description *</label>
           <textarea
@@ -68,7 +68,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onSubmit }
           />
         </div>
 
-        {/* Hours Selector */}
+        
         <div className="mb-6">
           <label className="block text-sm font-medium mb-1 text-gray-800">Hours *</label>
           <div className="flex items-center w-32 rounded-md overflow-hidden border border-gray-300">
@@ -92,7 +92,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onSubmit }
 
         <hr className="border-t border-gray-200 my-4" />
 
-        {/* Buttons */}
+        
         <div className="flex flex-col sm:flex-row justify-between gap-3">
           <button
             onClick={() => {
