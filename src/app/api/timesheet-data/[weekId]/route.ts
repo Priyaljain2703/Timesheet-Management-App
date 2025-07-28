@@ -77,8 +77,13 @@ const taskDataByWeek: Record<string, Record<string, { task: string; hours: numbe
     'Feb 1': [],
   },
 };
+type Context = {
+  params: {
+    weekId: string;
+  };
+};
 
-export async function GET(req: NextRequest, context: { params: { weekId: string } }) {
+export async function GET(req: NextRequest, context: Context) {
   const { weekId } = context.params;
   const data = taskDataByWeek[weekId];
 
