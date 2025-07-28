@@ -77,18 +77,18 @@ const taskDataByWeek: Record<string, Record<string, { task: string; hours: numbe
     'Feb 1': [],
   },
 };
-type Context = {
-  params: {
-    weekId: string;
-  };
-};
 
-export async function GET(req: NextRequest, context: Context) {
-  const { weekId } = context.params;
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { weekId: string } }
+) {
+  const { weekId } = params;
   const data = taskDataByWeek[weekId];
 
   if (!data) {
-    return new Response(JSON.stringify({ error: 'Timesheet data not found' }), { status: 404 });
+    return new Response(JSON.stringify({ error: 'Timesheet data not found' }), {
+      status: 404,
+    });
   }
 
   return Response.json(data);
