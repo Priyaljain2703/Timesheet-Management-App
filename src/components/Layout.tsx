@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Navbar from './NavBar';
-import SessionProviderWrapper from './SessionProviderWrapper';
 
 interface LayoutProps {
   children: React.ReactNode;
